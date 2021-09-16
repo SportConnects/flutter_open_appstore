@@ -46,12 +46,12 @@ public class OpenAppstorePlugin implements MethodCallHandler, FlutterPlugin {
 		String android_id = call.argument("android_id");
 		String manufacturer = android.os.Build.MANUFACTURER;
 		if (manufacturer.equals("Amazon")) {
-			context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("amzn://apps/android?p=" + android_id)));
+			applicationContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("amzn://apps/android?p=" + android_id)));
 		} else {
 			try {
-				context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + android_id)));
+				applicationContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + android_id)));
 			} catch (android.content.ActivityNotFoundException e) {
-				context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + android_id)));
+				applicationContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + android_id)));
             }
 		}
 		result.success(null);
